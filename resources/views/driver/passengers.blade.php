@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-12">
     <div class="mb-8">
         <a href="{{ route('driver.dashboard') }}" class="text-sm text-primary-600 font-bold flex items-center gap-1 mb-4 hover:underline">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -21,7 +21,7 @@
 
     <div class="glass rounded-[2rem] overflow-hidden border-slate-100 shadow-xl">
         <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
+            <table class="w-full text-left border-collapse min-w-[600px] sm:min-w-0">
                 <thead>
                     <tr class="bg-slate-50/50">
                         <th class="px-8 py-5 text-xs font-black text-slate-400 uppercase tracking-widest">Student Info</th>
@@ -40,6 +40,17 @@
                                 <div>
                                     <div class="font-bold text-slate-900">{{ $reservation->user->name }}</div>
                                     <div class="text-xs text-slate-400">{{ $reservation->user->email }}</div>
+                                    @if($reservation->pickup_lat)
+                                        <div class="flex items-center gap-1 mt-1.5 text-[10px] text-[#fe855e] font-black uppercase tracking-wider">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            Pickup: {{ $reservation->pickup_name ?? 'Dropped Pin' }} ({{ round($reservation->pickup_lat, 4) }}, {{ round($reservation->pickup_lng, 4) }})
+                                        </div>
+                                    @else
+                                        <div class="flex items-center gap-1 mt-1.5 text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            Pickup: Standard Campus Station
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </td>

@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-12">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
             <h1 class="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
             <p class="text-slate-500">Manage your shuttle fleet and operations</p>
         </div>
-        <div class="mt-4 md:mt-0 flex gap-4">
-            <a href="{{ route('admin.buses') }}" class="btn-red bg-slate-800 hover:bg-slate-900 px-4 py-2 text-sm">Manage Buses</a>
-            <a href="{{ route('admin.routes') }}" class="btn-red bg-slate-800 hover:bg-slate-900 px-4 py-2 text-sm">Manage Routes</a>
-            <a href="{{ route('admin.schedules') }}" class="btn-red px-4 py-2 text-sm">New Schedule</a>
+        <div class="mt-4 md:mt-0 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <a href="{{ route('admin.buses') }}" class="btn-red bg-slate-800 hover:bg-slate-900 px-4 py-3 sm:py-2 text-sm text-center">Manage Buses</a>
+            <a href="{{ route('admin.routes') }}" class="btn-red bg-slate-800 hover:bg-slate-900 px-4 py-3 sm:py-2 text-sm text-center">Manage Routes</a>
+            <a href="{{ route('admin.schedules') }}" class="btn-red px-4 py-3 sm:py-2 text-sm text-center">New Schedule</a>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <div class="glass p-6 rounded-2xl">
             <p class="text-sm font-medium text-slate-500 mb-1">Total Buses</p>
             <p class="text-3xl font-bold text-slate-900">{{ $stats['total_buses'] }}</p>

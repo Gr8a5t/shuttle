@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-12">
     <div class="mb-8">
         <a href="{{ route('admin.dashboard') }}" class="text-sm text-primary-600 font-medium flex items-center gap-1 mb-2 hover:underline">
             ← Back to Dashboard
@@ -53,7 +53,8 @@
 
         <!-- Route List -->
         <div class="lg:col-span-2 glass rounded-2xl overflow-hidden">
-            <table class="w-full text-left">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left min-w-[600px] sm:min-w-0">
                 <thead class="bg-slate-50 border-b border-slate-100">
                     <tr>
                         <th class="px-6 py-4 text-sm font-bold text-slate-600">Route Name</th>
@@ -81,6 +82,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </div>
 @endsection

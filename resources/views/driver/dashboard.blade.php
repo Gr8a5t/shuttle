@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-12">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
         <div>
             <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter">Driver <span class="text-primary-600">Portal</span></h1>
@@ -28,7 +28,7 @@
                 <span class="text-[10px] font-black bg-primary-100 text-primary-600 px-3 py-1 rounded-full uppercase tracking-widest">Live Requests</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 @forelse($availableSchedules as $schedule)
                     <div class="bg-white p-6 rounded-[2.5rem] border-2 border-slate-50 shadow-sm hover:border-primary-200 transition-all group relative overflow-hidden">
                         <!-- Demand Badge -->
@@ -100,7 +100,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-3 mb-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                             <a href="{{ route('driver.passengers', $schedule) }}" class="flex items-center justify-center gap-2 py-4 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-2xl font-black text-xs transition-all">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                                 Passenger List

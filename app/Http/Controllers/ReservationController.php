@@ -64,6 +64,9 @@ class ReservationController extends Controller
 
         $request->validate([
             'schedule_id' => 'required|exists:schedules,id',
+            'pickup_lat' => 'nullable|numeric',
+            'pickup_lng' => 'nullable|numeric',
+            'pickup_name' => 'nullable|string|max:255',
         ]);
 
         $schedule = Schedule::findOrFail($request->schedule_id);
@@ -86,9 +89,12 @@ class ReservationController extends Controller
             'user_id' => Auth::id(),
             'schedule_id' => $schedule->id,
             'status' => 'confirmed',
+            'pickup_lat' => $request->pickup_lat,
+            'pickup_lng' => $request->pickup_lng,
+            'pickup_name' => $request->pickup_name ?? 'Dropped Pin',
         ]);
 
-        return back()->with('success', 'Seat reserved successfully! See you on board.');
+        return back()->with('success', 'Seat reserved successfully! Your pickup location has been registered.');
     }
 
     public function myReservations()

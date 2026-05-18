@@ -68,22 +68,6 @@
     </nav>
 
     <main class="flex-grow">
-        @if(session('error'))
-            <div class="max-w-7xl mx-auto px-4 mt-6">
-                <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mb-6">
-                    {{ session('error') }}
-                </div>
-            </div>
-        @endif
-
-        @if(session('success'))
-            <div class="max-w-7xl mx-auto px-4 mt-6">
-                <div class="bg-emerald-50 border border-emerald-200 text-emerald-600 px-4 py-3 rounded-xl mb-6">
-                    {{ session('success') }}
-                </div>
-            </div>
-        @endif
-
         @yield('content')
     </main>
 
@@ -95,6 +79,77 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Dynamic Alert Handlers -->
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'Great',
+                    confirmButtonColor: '#fe855e',
+                    background: '#1e2330',
+                    color: '#ffffff',
+                    customClass: {
+                        popup: 'rounded-[2rem] border border-white/10 shadow-2xl',
+                        confirmButton: 'rounded-xl px-6 py-2.5 font-bold uppercase text-xs tracking-wider text-slate-900'
+                    }
+                });
+            });
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: "{{ session('error') }}",
+                    icon: 'error',
+                    confirmButtonText: 'Try Again',
+                    confirmButtonColor: '#fe855e',
+                    background: '#1e2330',
+                    color: '#ffffff',
+                    customClass: {
+                        popup: 'rounded-[2rem] border border-white/10 shadow-2xl',
+                        confirmButton: 'rounded-xl px-6 py-2.5 font-bold uppercase text-xs tracking-wider text-slate-900'
+                    }
+                });
+            });
+        </script>
+    @endif
+
+    @if($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Validation Error',
+                    html: `<div class="text-left text-xs text-slate-300">
+                        <ul class="list-disc pl-5 space-y-1">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>`,
+                    icon: 'error',
+                    confirmButtonText: 'Dismiss',
+                    confirmButtonColor: '#fe855e',
+                    background: '#1e2330',
+                    color: '#ffffff',
+                    customClass: {
+                        popup: 'rounded-[2rem] border border-white/10 shadow-2xl',
+                        confirmButton: 'rounded-xl px-6 py-2.5 font-bold uppercase text-xs tracking-wider text-slate-900'
+                    }
+                });
+            });
+        </script>
+    @endif
+
     @stack('scripts')
 </body>
 </html>
