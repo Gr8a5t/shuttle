@@ -27,6 +27,8 @@ services:
         value: "database"
       - key: QUEUE_CONNECTION
         value: "database"
+      - key: LOG_CHANNEL
+        value: "stderr"
     disk:
       name: shuttle-data
       mountPath: /data
