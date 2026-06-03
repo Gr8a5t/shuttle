@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: shuttle
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /
+    envVars:
+      - key: APP_NAME
+        value: "Shuttle"
+      - key: APP_ENV
+        value: "production"
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        value: "https://shuttle.onrender.com"
+      - key: DB_CONNECTION
+        value: "sqlite"
+      - key: DB_DATABASE
+        value: "/data/database.sqlite"
+      - key: SESSION_DRIVER
+        value: "database"
+      - key: CACHE_STORE
+        value: "database"
+      - key: QUEUE_CONNECTION
+        value: "database"
+    disk:
+      name: shuttle-data
+      mountPath: /data
+      sizeGB: 1
