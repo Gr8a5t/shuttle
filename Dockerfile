@@ -35,7 +35,8 @@ RUN apk add --no-cache \
     git \
     oniguruma-dev \
     bash \
-    sqlite-dev
+    sqlite-dev \
+    && mkdir -p /var/log/supervisor
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_sqlite bcmath mbstring xml zip opcache
