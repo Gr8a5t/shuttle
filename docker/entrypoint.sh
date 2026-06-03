@@ -34,6 +34,12 @@ chown -R www-data:www-data "$DB_DIR"
 chmod 775 "$DB_DIR"
 chmod 664 "$DB_PATH"
 
+# Ensure APP_KEY is set to avoid 500 errors
+if [ -z "$APP_KEY" ]; then
+    echo "🔑 APP_KEY is empty. Generating a fallback key..."
+    export APP_KEY=$(php artisan key:generate --show --no-interaction)
+fi
+
 # Run Laravel optimizations
 echo "⚡ Optimizing Laravel config, routes, and views..."
 php artisan config:cache
