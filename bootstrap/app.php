@@ -17,5 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->report(function (\Throwable $e) {
+            @file_put_contents(
+                storage_path('logs/error.txt'),
+                get_class($e) . ': ' . $e->getMessage() . "\n" . $e->getTraceAsString()
+            );
+        });
     })->create();
