@@ -13,6 +13,8 @@ if [ -n "$DB_DATABASE" ]; then
     DB_PATH="$DB_DATABASE"
 fi
 
+export DB_DATABASE="$DB_PATH"
+
 echo "📂 Using database at: $DB_PATH"
 
 DB_DIR=$(dirname "$DB_PATH")
