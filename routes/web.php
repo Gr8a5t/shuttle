@@ -9,14 +9,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/show-error', function () {
-    $path = storage_path('logs/error.txt');
-    if (file_exists($path)) {
-        return response(file_get_contents($path), 200, ['Content-Type' => 'text/plain']);
-    }
-    return 'No error file found.';
-});
-
 // Auth Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
